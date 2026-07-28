@@ -20,8 +20,10 @@ const EMPTY_FILTER_GROUP: UniversalFiltersGroup = {
 }
 
 /** Retention tiers a rule may assign. Mirrors VALID_RETENTION_DAYS on the backend. */
-export const RETENTION_DAYS_OPTIONS: number[] = [14, 30, 90]
-const DEFAULT_RETENTION_DAYS = 30
+export const RETENTION_DAYS_OPTIONS: number[] = [14, 30]
+// 14 is the always-available free tier; 30 is entitlement-gated on the backend, so default to 14
+// to avoid a form that fails to save out of the box for orgs without the extended-retention feature.
+const DEFAULT_RETENTION_DAYS = 14
 
 export interface LogsRetentionFormType {
     name: string
